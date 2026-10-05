@@ -3,16 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Calculadora — Patología Médica y Terapéutica</title>
+<title>Calculadora de Evaluación</title>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
 <header>
   <h1>Calculadora de Evaluación</h1>
-  <p>Patología Médica y Terapéutica</p>
+  <nav class="anios" aria-label="Año de la carrera">
+    <button type="button" class="anio" data-anio="5" aria-pressed="true">5to año</button>
+    <button type="button" class="anio" data-anio="6" aria-pressed="false">6to año</button>
+  </nav>
+  <nav class="tabs" role="tablist" aria-label="Materia">
+    <button type="button" class="tab" role="tab" id="tab-medica" data-tab="medica" data-anio="5" aria-controls="panel-medica" aria-selected="true">Patología Médica y Terapéutica 2026</button>
+    <button type="button" class="tab" role="tab" id="tab-quirurgica" data-tab="quirurgica" data-anio="6" aria-controls="panel-quirurgica" aria-selected="false" tabindex="-1" hidden>Patología Quirúrgica 2026</button>
+    <button type="button" class="tab" role="tab" id="tab-clinica" data-tab="clinica" data-anio="6" aria-controls="panel-clinica" aria-selected="false" tabindex="-1" hidden>Clínica Quirúrgica 2026</button>
+    <button type="button" class="tab" role="tab" id="tab-familiar" data-tab="familiar" data-anio="6" aria-controls="panel-familiar" aria-selected="false" tabindex="-1" hidden>Medicina Familiar y Comunitaria 2026</button>
+  </nav>
 </header>
 
+<!-- ================= Patología Médica y Terapéutica ================= -->
+<section class="panel" id="panel-medica" role="tabpanel" aria-labelledby="tab-medica">
 <div class="layout">
   <main>
 
@@ -81,6 +92,337 @@
 
   </aside>
 </div>
+</section>
+
+<!-- ================= Patología Quirúrgica ================= -->
+<section class="panel" id="panel-quirurgica" role="tabpanel" aria-labelledby="tab-quirurgica" hidden>
+<div class="layout">
+  <main>
+
+    <section class="card">
+      <h2>Requisitos y modalidad</h2>
+      <div class="asistencia">
+        <label>
+          <input type="checkbox" id="q-heridasAsistencia" checked>
+          Asistí a las 3 instancias del Taller de tratamiento de heridas cutáneas
+        </label>
+        <label>
+          Evaluación del Taller de heridas:
+          <select id="q-heridasEval">
+            <option value="suficiente">Suficiente</option>
+            <option value="insuficiente">Insuficiente</option>
+          </select>
+        </label>
+        <label>
+          <input type="checkbox" id="q-controlada" checked>
+          Curso en modalidad con asistencia controlada
+        </label>
+      </div>
+      <div class="aviso" id="q-avisoHeridas"></div>
+      <div class="aviso" id="q-avisoML"></div>
+    </section>
+
+    <section class="card">
+      <h2>1 · Tus resultados</h2>
+      <table>
+        <thead>
+          <tr><th>Evaluación</th><th>Formato</th><th>Resultado</th></tr>
+        </thead>
+        <tbody id="q-tablaResultados"></tbody>
+      </table>
+    </section>
+
+    <section class="card">
+      <h2>2 · Puntaje máximo de cada evaluación</h2>
+      <table>
+        <thead>
+          <tr><th>Evaluación</th><th>Máximo</th></tr>
+        </thead>
+        <tbody id="q-tablaMax"></tbody>
+      </table>
+      <div class="suma-pesos" id="q-sumaMax"></div>
+    </section>
+
+  </main>
+
+  <aside>
+
+    <section class="card resultado">
+      <h2>Resultado</h2>
+      <p class="nota"><span id="q-nota">0.0</span><small> / <span id="q-notaMax">100</span></small></p>
+      <span class="veredicto recursa" id="q-veredicto">—</span>
+      <p class="detalle-veredicto" id="q-detalle"></p>
+      <ul class="modulos" id="q-modulos"></ul>
+      <ul class="criterios">
+        <li><strong>Exonera:</strong> total ≥ 60% y al menos 40% de los puntos de cada módulo.</li>
+        <li><strong>Rinde examen:</strong> total ≥ 40% sin alcanzar los requisitos de exoneración.</li>
+        <li><strong>Debe recursar:</strong> total &lt; 40%, o no cumplir con el Taller de heridas (asistir a las 3 instancias y obtener “suficiente”).</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <details class="reglas">
+        <summary>Programa del curso: Reglas</summary>
+        <div class="texto">● Evaluación práctica del Taller de tratamiento de heridas cutáneas: incluye los contenidos teóricos y prácticos abordados en el taller en modalidad de situación clínica simulada. El resultado de esta evaluación puede ser suficiente o insuficiente.
+
+● Evaluación Taller de Medicina Legal (disponible para quienes cursan en modalidad con asistencia controlada): consiste en una evaluación continua y una prueba escrita. El puntaje final oscila entre 0 y 5 puntos, los que se sumarán al puntaje obtenido en los parciales.
+
+● Evaluación teórica: se realizan durante el curso 2 pruebas parciales de tipo múltiple opción o modalidad equivalente. El primer parcial evalúa contenidos del módulo de patología quirúrgica (30 puntos) y del módulo de anatomía patológica (10 puntos), con un puntaje máximo de 40 puntos. El segundo parcial evalúa contenidos de los tres módulos con un puntaje máximo de 55 puntos (30 puntos correspondientes a patología quirúrgica, 10 puntos correspondientes a anatomía patológica y 15 puntos correspondientes al módulo de Medicina Legal y Ciencias Forenses).
+
+Los puntajes obtenidos en la evaluación del Taller de Medicina Legal y en los dos parciales teóricos se suman para obtener el puntaje final del curso, con un máximo de 100 puntos.
+
+<strong>Aprobación de la UC</strong>
+Requisitos para aprobar:
+– Asistir a las tres instancias del Taller de tratamiento de heridas cutáneas.
+– Obtener una calificación de “suficiente” en la evaluación del Taller de tratamiento de heridas cutáneas.
+– Obtener un 40% o más del total de puntos del curso.
+
+En caso de no cumplir con alguno de estos requisitos el resultado es Reprobado y el estudiante deberá volver a cursar la unidad curricular. En caso de cumplir con todos los requisitos, el resultado puede ser: Aprobado o Rinde examen.
+
+● Aprobado (con exoneración de examen): si obtiene el 60% o más de la suma total de puntos y el 40% de los puntos de cada módulo (patología quirúrgica, anatomía patológica y medicina legal y ciencias forenses).
+
+● Rinde examen: si obtiene 40% o más del total de puntos, pero no alcanza los requisitos para la aprobación por exoneración del examen, deberá rendir examen para aprobar la unidad curricular.
+
+El examen evalúa los contenidos de los tres módulos que integran el curso. La modalidad del examen puede ser escrita u oral, dependiendo del número de estudiantes presentados. La aprobación por examen requiere alcanzar el 60% del total de puntos y el 40% de los puntos de cada módulo (patología quirúrgica, anatomía patológica y medicina legal y ciencias forenses).</div>
+      </details>
+    </section>
+
+  </aside>
+</div>
+</section>
+
+<!-- ================= Clínica Quirúrgica ================= -->
+<section class="panel" id="panel-clinica" role="tabpanel" aria-labelledby="tab-clinica" hidden>
+<div class="layout">
+  <main>
+
+    <section class="card">
+      <h2>Asistencia</h2>
+      <div class="asistencia">
+        <label>
+          Total de clases:
+          <input type="number" id="c-totalClases" min="0" step="1" placeholder="—">
+        </label>
+        <label>
+          Faltas no justificadas:
+          <input type="number" id="c-faltasNJ" min="0" step="1" value="0">
+        </label>
+        <label>
+          Faltas justificadas:
+          <input type="number" id="c-faltasJ" min="0" step="1" value="0">
+        </label>
+      </div>
+      <div class="suma-pesos" id="c-detalleAsistencia"></div>
+      <div class="aviso" id="c-avisoAsistencia"></div>
+    </section>
+
+    <section class="card">
+      <h2>1 · Tus resultados</h2>
+      <table>
+        <thead>
+          <tr><th>Evaluación</th><th>Formato</th><th>Resultado</th></tr>
+        </thead>
+        <tbody id="c-tablaResultados"></tbody>
+      </table>
+    </section>
+
+    <section class="card">
+      <h2>2 · Peso de cada evaluación (% de la nota final)</h2>
+      <table>
+        <thead>
+          <tr><th>Evaluación</th><th>Peso (%)</th></tr>
+        </thead>
+        <tbody id="c-tablaPesos"></tbody>
+      </table>
+      <div class="suma-pesos" id="c-sumaPesos"></div>
+    </section>
+
+  </main>
+
+  <aside>
+
+    <section class="card resultado">
+      <h2>Resultado</h2>
+      <p class="nota"><span id="c-nota">0.0</span><small> / 100</small></p>
+      <span class="veredicto recursa" id="c-veredicto">—</span>
+      <p class="detalle-veredicto" id="c-detalle"></p>
+      <ul class="modulos" id="c-categorias"></ul>
+      <ul class="criterios">
+        <li><strong>Exonera:</strong> calificación final ≥ 60% y al menos 40% en cada evaluación (parciales, encuentros clínicos, evaluación continua y portafolio).</li>
+        <li><strong>Rinde examen:</strong> calificación final ≥ 40% sin alcanzar los requisitos de exoneración.</li>
+        <li><strong>Debe recursar:</strong> calificación final &lt; 40%, o superar el 10% de inasistencias no justificadas o el 20% de justificadas.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <details class="reglas">
+        <summary>Programa del curso: Reglas</summary>
+        <div class="texto"><strong>Formas de evaluación</strong>
+● Parciales: se realizan 2 parciales teóricos que incluyen la evaluación de conocimientos, en modalidad múltiple opción.
+
+● Encuentros clínicos: se realizan 2 evaluaciones prácticas que evalúan las habilidades clínicas, con los siguientes aspectos: elaboración diagnóstica del paciente quirúrgico incluyendo semiología (interrogatorio, examen físico); razonamiento clínico, interpretación de exámenes paraclínicos y lineamientos generales del manejo terapéutico.
+
+● Evaluación continua: el docente del grupo evalúa a los estudiantes en forma individual. Esta debe brindar una constante retroalimentación sobre las fortalezas y debilidades que se detectan, permitiendo realizar las modificaciones necesarias a fin de cumplir con los objetivos planteados del curso.
+
+● Portafolio: es un trabajo de carácter individual que refleja el desempeño del estudiante junto a la gestión y autorregulación de su proceso de aprendizaje. El trabajo permite demostrar la capacidad para seleccionar y presentar las diferentes actividades integrando información sobre el proceso de aprendizaje.
+Debe incluir al menos:
+A. 2 procedimientos de casos clínicos (Historias Clínicas).
+B. 2 procedimientos prácticos presenciados o llevados a cabo en el servicio de urgencia o en sala.
+C. 2 procedimientos diagnósticos presenciados (imagenología, endoscopía) con una reflexión del estudiante con respecto a su proceso de aprendizaje.
+El docente debe guiar su elaboración, modelando el progreso del estudiante durante el proceso formativo.
+
+<strong>Aprobación de la Unidad curricular</strong>
+Requisitos para aprobar:
+– Asistencia: será condición para la aprobación del curso no superar el 10% de inasistencias no justificadas y hasta un 20% de inasistencias justificadas.
+– Calificación final mayor o igual a 40%.
+
+La calificación final se integra por las calificaciones de parciales, encuentros clínicos, evaluación continua y portafolio con la siguiente ponderación:
+– Parciales: 40%
+– Encuentros clínicos: 20%
+– Evaluación continua: 30%
+– Portafolio: 10%
+
+El resultado del curso puede ser Aprobado (exoneración de examen), Rinde examen o Reprobado.
+
+● Reprobado: los estudiantes que no cumplen con los requisitos listados previamente reprueban el curso y deben volver a cursar la unidad curricular.
+
+● Aprobación (con exoneración de examen): el estudiante cuya calificación final de curso corresponde a un 60% o más y alcanza un mínimo del 40% en cada una de las evaluaciones (parciales MO, encuentro clínico, evaluación continua y portafolio).
+
+● Rinde examen: en caso de cumplir con los requisitos pero no alcanzar las condiciones de aprobación (con exoneración del examen), el estudiante debe rendir examen para la aprobación de la unidad curricular.</div>
+        <table class="horas">
+          <thead><tr><th></th><th>Horas prácticas</th><th>Horas teóricas</th></tr></thead>
+          <tbody>
+            <tr><td>Clínica quirúrgica</td><td>270</td><td>66</td></tr>
+            <tr><td>Emergencia</td><td>0</td><td>18</td></tr>
+            <tr><td>Especialidades</td><td>16</td><td>48</td></tr>
+            <tr><td>Portafolio</td><td>20</td><td>0</td></tr>
+            <tr><td><strong>Total de horas</strong></td><td><strong>306</strong></td><td><strong>132</strong></td></tr>
+          </tbody>
+        </table>
+      </details>
+    </section>
+
+  </aside>
+</div>
+</section>
+
+<!-- ================= Medicina Familiar y Comunitaria ================= -->
+<section class="panel" id="panel-familiar" role="tabpanel" aria-labelledby="tab-familiar" hidden>
+<div class="layout">
+  <main>
+
+    <section class="card">
+      <h2>Asistencia y requisitos</h2>
+      <div class="asistencia">
+        <label>
+          Total de clases:
+          <input type="number" id="f-totalClases" min="0" step="1" placeholder="—">
+        </label>
+        <label>
+          Faltas no justificadas:
+          <input type="number" id="f-faltasNJ" min="0" step="1" value="0">
+        </label>
+        <label>
+          Faltas justificadas:
+          <input type="number" id="f-faltasJ" min="0" step="1" value="0">
+        </label>
+      </div>
+      <div class="suma-pesos" id="f-detalleAsistencia"></div>
+      <div class="asistencia requisitos-extra">
+        <label>
+          <input type="checkbox" id="f-tareasEva" checked>
+          Completé todas las tareas obligatorias autoadministradas de MFyC en EVA
+        </label>
+        <label>
+          <input type="checkbox" id="f-ambosEcps" checked>
+          Rendí ambos ECPS
+        </label>
+      </div>
+      <div class="aviso" id="f-avisoAsistencia"></div>
+      <div class="aviso" id="f-avisoTareas"></div>
+      <div class="aviso" id="f-avisoEcps"></div>
+    </section>
+
+    <section class="card">
+      <h2>1 · Tus resultados</h2>
+      <table>
+        <thead>
+          <tr><th>Evaluación</th><th>Formato</th><th>Resultado</th></tr>
+        </thead>
+        <tbody id="f-tablaResultados"></tbody>
+      </table>
+    </section>
+
+    <section class="card">
+      <h2>2 · Peso de cada evaluación (% de la nota global)</h2>
+      <table>
+        <thead>
+          <tr><th>Evaluación</th><th>Peso (%)</th></tr>
+        </thead>
+        <tbody id="f-tablaPesos"></tbody>
+      </table>
+      <div class="suma-pesos" id="f-sumaPesos"></div>
+    </section>
+
+  </main>
+
+  <aside>
+
+    <section class="card resultado">
+      <h2>Resultado</h2>
+      <p class="nota"><span id="f-nota">0.0</span><small> / 100</small></p>
+      <span class="veredicto recursa" id="f-veredicto">—</span>
+      <p class="detalle-veredicto" id="f-detalle"></p>
+      <ul class="modulos" id="f-requisitos"></ul>
+      <ul class="criterios">
+        <li><strong>Exonera:</strong> nota global ≥ 60%, haber rendido ambos ECPS y obtener al menos 60% entre ambos.</li>
+        <li><strong>Rinde examen:</strong> cumple los requisitos mínimos pero no las condiciones de exoneración (“sin concepto”).</li>
+        <li><strong>Debe recursar:</strong> nota global &lt; 40%, evaluación continua &lt; 40% (16 de 40 puntos), tareas de EVA incompletas, o superar el 10% de inasistencias no justificadas o el 20% de justificadas.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <details class="reglas">
+        <summary>Programa del curso: Reglas</summary>
+        <div class="texto"><strong>Formas de evaluación y aprobación</strong>
+● Evaluación continua: se utilizará una rúbrica (adjunta en anexos) para la evaluación de los estudiantes en el contexto clínico del PNA. Es aplicada por el docente de MFyC a cargo del grupo de estudiantes. La devolución de la evaluación a cada estudiante se realiza al concluir cada período (julio y noviembre).
+
+● Encuentro Clínico con Paciente Simulado (ECPS): instancia individual de evaluación clínica estructurada, en la que el estudiante aborda un caso del PNA con un paciente simulado, evaluando competencias clínicas y comunicacionales, mediante criterios previamente establecidos. Se realizan 2 instancias a lo largo del curso.
+
+● Parciales escritos con preguntas múltiple opción que se realizan en los meses de julio y noviembre.
+
+En los ECPS y en los parciales escritos se evalúan de forma integrada los contenidos teórico-clínicos de las tres disciplinas que conforman la Unidad Curricular.
+
+<strong>Calificación global</strong>
+La ponderación de cada instancia de evaluación será la siguiente: cada ECPS corresponde a un 20% de la nota global (ambos suman 40%); cada parcial teórico corresponde al 10% de la nota global (ambos suman 20%) y la Evaluación Continua corresponde al 40% de la nota global.
+
+<strong>Aprobación de la Unidad Curricular</strong>
+Requisitos:
+● No superar el 10% de inasistencias no justificadas y un 20% de inasistencias justificadas en las actividades de asistencia controlada.
+● Realizar la totalidad de las tareas obligatorias autoadministradas de Medicina Familiar y Comunitaria en EVA, disponibles hasta una semana antes del último parcial.
+● Obtener un mínimo de 40% de la nota global.
+● Obtener un mínimo de 40% en evaluación continua (que se corresponde con 16 puntos del total de 40 puntos de la rúbrica).
+
+En caso de no cumplir con alguno de estos requisitos el resultado es Reprobado y el estudiante debe volver a cursar la unidad curricular.
+
+<strong>Aprobación con exoneración de examen</strong>
+Para ello se deben cumplir estas 2 condiciones:
+● Obtener una calificación de 60% o más de la nota global.
+● Haber rendido ambos ECPS y obtener un 60% como mínimo entre ambos.
+
+<strong>Aprobación mediante examen final</strong>
+Aquellos estudiantes que cumplen los requisitos mínimos pero no aprueban la UC por exoneración de examen, obtienen una calificación definida como “sin concepto” y deben rendir examen.
+
+El examen evalúa los contenidos de todas las disciplinas que participan en el curso y tendrá dos formatos posibles:
+1) ECPS y Preguntas Múltiple Opción.
+2) Encuentro Clínico con Paciente Real en PNA (sujeto a disponibilidad de recursos).
+La aprobación del mismo, en ambos escenarios, requiere obtener un porcentaje de 60% o más.</div>
+      </details>
+    </section>
+
+  </aside>
+</div>
+</section>
 
 <footer>
   Calculadora orientativa — verificá siempre tu situación con el reglamento oficial del curso.<br>
@@ -88,6 +430,10 @@
 </footer>
 
 <script src="script.js"></script>
+<script src="quirurgica.js"></script>
+<script src="clinica.js"></script>
+<script src="familiar.js"></script>
+<script src="tabs.js"></script>
 
 </body>
 </html>

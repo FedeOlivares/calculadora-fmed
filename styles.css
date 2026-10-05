@@ -31,6 +31,57 @@ header {
 header h1 { margin: 0; font-size: 1.4rem; font-weight: 600; }
 header p { margin: 6px 0 0; opacity: .85; font-size: .95rem; }
 
+[hidden] { display: none !important; }
+
+.anios {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 14px;
+}
+.anio {
+  border: 1px solid rgba(255, 255, 255, .35);
+  background: transparent;
+  color: #fff;
+  font: inherit;
+  font-size: .82rem;
+  font-weight: 600;
+  padding: 4px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  opacity: .8;
+  transition: background .15s, border-color .15s;
+}
+.anio:hover { opacity: 1; border-color: rgba(255, 255, 255, .7); }
+.anio[aria-pressed="true"] { opacity: 1; border-color: #fff; background: rgba(255, 255, 255, .22); }
+.anio:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+
+.tabs {
+  display: inline-flex;
+  gap: 4px;
+  margin-top: 10px;
+  padding: 4px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .15);
+  max-width: 100%;
+}
+.tab {
+  border: 0;
+  background: transparent;
+  color: #fff;
+  font: inherit;
+  font-size: .92rem;
+  font-weight: 600;
+  padding: 8px 18px;
+  border-radius: 999px;
+  cursor: pointer;
+  opacity: .85;
+  transition: background .15s, color .15s;
+}
+.tab:hover { opacity: 1; background: rgba(255, 255, 255, .12); }
+.tab[aria-selected="true"] { background: #fff; color: var(--accent); opacity: 1; }
+.tab:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+
 .layout {
   max-width: 1100px;
   margin: 24px auto;
@@ -47,6 +98,8 @@ header p { margin: 6px 0 0; opacity: .85; font-size: .95rem; }
   .layout > main, .layout > aside { display: contents; }
   .card { margin-bottom: 0; min-width: 0; }
   .resultado { order: -1; }
+  .tabs { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; max-width: 640px; margin-inline: auto; border-radius: 16px; }
+  .tab { border-radius: 12px; }
 }
 
 .card {
@@ -66,6 +119,17 @@ table { width: 100%; border-collapse: collapse; font-size: .95rem; }
 th, td { padding: 8px 10px; text-align: left; border-bottom: 1px solid var(--border); vertical-align: middle; }
 th { color: var(--muted); font-weight: 600; font-size: .85rem; text-transform: uppercase; letter-spacing: .03em; }
 tr:last-child td { border-bottom: none; }
+
+tr.grupo td {
+  padding-top: 16px;
+  font-size: .8rem;
+  font-weight: 700;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: .03em;
+}
+tbody tr.grupo:first-child td { padding-top: 8px; }
+tr.grupo .grupo-max { color: var(--muted); font-weight: 600; text-transform: none; letter-spacing: 0; }
 
 input[type="number"] {
   width: 72px;
@@ -95,7 +159,8 @@ select:disabled { background: #f3f4f6; color: #9ca3af; cursor: not-allowed; }
   align-items: center;
 }
 .asistencia label { display: flex; align-items: center; gap: 8px; font-size: .95rem; }
-.asistencia input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--accent); }
+.asistencia input[type="checkbox"] { width: 18px; height: 18px; flex-shrink: 0; accent-color: var(--accent); }
+.asistencia.requisitos-extra { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border); }
 
 .aviso {
   margin-top: 10px;
@@ -166,7 +231,30 @@ details.reglas .texto {
   color: var(--text);
   white-space: pre-line;
 }
-.criterios { font-size: .88rem; color: var(--muted); margin-top: 12px; }
+.modulos {
+  list-style: none;
+  padding: 0;
+  margin: 16px 0 0;
+  text-align: left;
+  font-size: .85rem;
+}
+.modulos li {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 7px 10px;
+  border-radius: 8px;
+  margin-bottom: 6px;
+}
+.modulos li.ok { background: var(--ok-bg); color: var(--ok); }
+.modulos li.falta { background: var(--bad-bg); color: var(--bad); }
+.modulos .modulo-pts { font-weight: 600; white-space: nowrap; }
+
+table.horas { margin-top: 14px; font-size: .82rem; }
+table.horas th { font-size: .72rem; }
+table.horas td:not(:first-child), table.horas th:not(:first-child) { text-align: right; }
+
+.criterios { font-size: .88rem; color: var(--muted); margin-top: 12px; text-align: left; padding-left: 20px; }
 .criterios li { margin-bottom: 6px; }
 
 footer {
@@ -191,6 +279,8 @@ footer a:hover { text-decoration: underline; }
   .puntos-wrap { gap: 3px; }
   .puntos-wrap input { width: 40px; }
   .puntos-wrap .de { font-size: .8rem; }
-  select { padding: 6px 2px; font-size: .82rem; width: 56px; }
+  td select { padding: 6px 2px; font-size: .82rem; width: 70px; }
   .resultado .nota { font-size: 2.2rem; }
+  header { padding: 20px 10px; }
+  .tab { flex: 1; padding: 8px 6px; font-size: .78rem; line-height: 1.25; }
 }
