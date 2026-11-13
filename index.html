@@ -16,6 +16,7 @@
   </nav>
   <nav class="tabs" role="tablist" aria-label="Materia">
     <button type="button" class="tab" role="tab" id="tab-medica" data-tab="medica" data-anio="5" aria-controls="panel-medica" aria-selected="true">Patología Médica y Terapéutica 2026</button>
+    <button type="button" class="tab" role="tab" id="tab-clinica-medica" data-tab="clinica-medica" data-anio="5" aria-controls="panel-clinica-medica" aria-selected="false" tabindex="-1">Clínica Médica 2026</button>
     <button type="button" class="tab" role="tab" id="tab-quirurgica" data-tab="quirurgica" data-anio="6" aria-controls="panel-quirurgica" aria-selected="false" tabindex="-1" hidden>Patología Quirúrgica 2026</button>
     <button type="button" class="tab" role="tab" id="tab-clinica" data-tab="clinica" data-anio="6" aria-controls="panel-clinica" aria-selected="false" tabindex="-1" hidden>Clínica Quirúrgica 2026</button>
     <button type="button" class="tab" role="tab" id="tab-familiar" data-tab="familiar" data-anio="6" aria-controls="panel-familiar" aria-selected="false" tabindex="-1" hidden>Medicina Familiar y Comunitaria 2026</button>
@@ -87,6 +88,111 @@
 ● Evaluación de talleres: La evaluación de la actividad está restringida a los estudiantes que asisten a los talleres y consiste en pruebas escritas de distintas modalidades (opción múltiple, respuesta breve, verdadero/falso u otras). Estas evaluaciones se realizan por módulos temáticos en modalidad presencial, en un total de 3 instancias. La evaluación de talleres (en total, las 3 instancias) puede otorgar hasta el 24% del total de puntos del curso. Para la asignación del puntaje obtenido, el estudiante no debe superar el porcentaje de inasistencias permitido en los talleres (20%).
 
 ● Evaluación de los Seminarios interdisciplinarios: La evaluación es tanto individual como global de todo el grupo y puede otorgar hasta el 6% del total de puntos del curso.</div>
+      </details>
+    </section>
+
+  </aside>
+</div>
+</section>
+
+<!-- ================= Clínica Médica ================= -->
+<section class="panel" id="panel-clinica-medica" role="tabpanel" aria-labelledby="tab-clinica-medica" hidden>
+<div class="layout">
+  <main>
+
+    <section class="card">
+      <h2>Asistencia y requisitos</h2>
+      <div class="asistencia">
+        <label>
+          Total de clases:
+          <input type="number" id="cm-totalClases" min="0" step="1" placeholder="—">
+        </label>
+        <label>
+          Faltas no justificadas:
+          <input type="number" id="cm-faltasNJ" min="0" step="1" value="0">
+        </label>
+        <label>
+          Faltas justificadas:
+          <input type="number" id="cm-faltasJ" min="0" step="1" value="0">
+        </label>
+      </div>
+      <div class="suma-pesos">El límite se aplica a cada componente de la UC (clínica médica, psiquiatría, psicología médica y bioética): ingresá los datos del componente con más inasistencias.</div>
+      <div class="suma-pesos" id="cm-detalleAsistencia"></div>
+      <div class="asistencia requisitos-extra">
+        <label>
+          <input type="checkbox" id="cm-tresEncuentros" checked>
+          Rendí los tres encuentros clínicos en los plazos establecidos
+        </label>
+      </div>
+      <div class="aviso" id="cm-avisoAsistencia"></div>
+      <div class="aviso" id="cm-avisoEncuentros"></div>
+    </section>
+
+    <section class="card">
+      <h2>1 · Tus resultados</h2>
+      <table>
+        <thead>
+          <tr><th>Evaluación</th><th>Formato</th><th>Resultado</th></tr>
+        </thead>
+        <tbody id="cm-tablaResultados"></tbody>
+      </table>
+      <div class="suma-pesos">Los parciales no son obligatorios y no tienen recuperación: si no rendiste uno, dejalo en 0. Dentro de cada componente las instancias se promedian en partes iguales.</div>
+    </section>
+
+    <section class="card">
+      <h2>2 · Peso de cada componente (% de la calificación final)</h2>
+      <table>
+        <thead>
+          <tr><th>Componente</th><th>Peso (%)</th></tr>
+        </thead>
+        <tbody id="cm-tablaPesos"></tbody>
+      </table>
+      <div class="suma-pesos" id="cm-sumaPesos"></div>
+    </section>
+
+  </main>
+
+  <aside>
+
+    <section class="card resultado">
+      <h2>Resultado</h2>
+      <p class="nota"><span id="cm-nota">0.0</span><small> / 100</small></p>
+      <span class="veredicto recursa" id="cm-veredicto">—</span>
+      <p class="detalle-veredicto" id="cm-detalle"></p>
+      <ul class="modulos" id="cm-requisitos"></ul>
+      <ul class="criterios">
+        <li><strong>Exonera (Aprobado):</strong> cumple los requisitos mínimos y calificación final ≥ 60%.</li>
+        <li><strong>Rinde examen:</strong> cumple los requisitos mínimos y calificación final entre 40% y 59%.</li>
+        <li><strong>Debe recursar:</strong> calificación final &lt; 40%, o no cumplir algún requisito mínimo (asistencia, evaluación continua ≥ 40%, rendir los 3 encuentros clínicos y obtener ≥ 2/10 en al menos dos).</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <details class="reglas">
+        <summary>Programa del curso: Reglas</summary>
+        <div class="texto"><strong>Formas de evaluación</strong>
+● Evaluación continua: está a cargo del docente tutor o de cercanía tomando en cuenta todas las actividades del curso. Se realiza integrada al proceso de enseñanza, orientada a mejorar y lograr la comprensión del estudiante y la construcción del aprendizaje significativo. Aproximadamente a mitad del curso, el docente realiza una devolución conceptual sobre la evolución que el estudiante ha tenido hasta el momento.
+
+● Encuentros clínicos: se realizan tres a lo largo del curso. Cada uno está a cargo de un docente distinto del docente de cercanía o tutor de Clínica Médica, pudiendo participar también docentes de las otras disciplinas que integran la unidad curricular. Al finalizar cada encuentro, el docente brinda una devolución individual al estudiante. Para aprobar el curso es obligatorio rendir los tres encuentros clínicos en los plazos establecidos por el equipo de coordinación.
+
+● Parciales escritos: tienen carácter esencialmente sumativo y se basan en viñetas clínicas y conceptos teóricos que abarcan los contenidos del curso. La realización de los parciales escritos no constituye un requisito obligatorio. En caso de inasistencia, cualquiera sea su causa, no se contemplan instancias de recuperación.
+
+<strong>Aprobación de la Unidad Curricular</strong>
+Requisitos mínimos:
+– Asistencia: no superar el 10% de inasistencias no justificadas y un 20% de inasistencias justificadas en las actividades de asistencia controlada de cada uno de los componentes de la UC.
+– Evaluación continua: obtener un puntaje ≥ 40% del total de la misma.
+– Encuentros clínicos: rendir todos los encuentros clínicos previstos para el curso en los plazos establecidos por la coordinación y obtener en al menos dos de ellos un puntaje ≥ 2 (escala 0–10).
+
+Los estudiantes que no alcancen los requisitos mínimos no quedarán habilitados al cálculo de la calificación final y deberán recursar la unidad curricular.
+
+<strong>Calificación final</strong>
+Suma ponderada de las instancias de evaluación: Parciales 30%, Encuentros clínicos 40%, Evaluación continua 30%.
+
+● Aprobado: calificación final ≥ 60% del total del curso.
+● Rinde examen: calificación final ≥ 40% pero &lt; 60% del total del curso.
+● Reprobado: calificación final &lt; 40% del total del curso. El estudiante debe volver a cursar la unidad curricular.
+
+El examen abarca las diferentes áreas temáticas del curso, pudiendo incluir cualquiera de sus componentes (clínica médica, psiquiatría, psicología médica y bioética). Se trata de un examen clínico cuya modalidad dependerá del número de estudiantes a rendir.</div>
       </details>
     </section>
 
@@ -430,6 +536,7 @@ La aprobación del mismo, en ambos escenarios, requiere obtener un porcentaje de
 </footer>
 
 <script src="script.js"></script>
+<script src="clinica-medica.js"></script>
 <script src="quirurgica.js"></script>
 <script src="clinica.js"></script>
 <script src="familiar.js"></script>
